@@ -10,18 +10,21 @@
 from rooms import rooms
 import sys
 
-def showInstructions() : #Make this all one string, no + signs 
-						# include more detailed instruction on how to play and win.
-	print("================" + 
-	
-		"\nCommands:" +
-		"\n\'go\' [direction]" +
-		"\n\'get' [item]" +
-		"\n================")
+def showInstructions() :
+	print("""================
+The objective of the game is simple: Escape the mansion.
+You can move from room to room collecting items to help you in
+this task, but watch out for the monster!
+
+Commands:
+\'go\' [direction]
+\'get' [item]
+================""")
 
 def showStatus():
 	print("-------STATUS-------" +
 		"\nCurrent room: " + currentRoom +
+		"\nAvailable directions: " + str(list(rooms[currentRoom].keys())) +
 		"\nInventory: " + str(inventory))
 	if 'item' in rooms[currentRoom] :
 		print("You see a " + rooms[currentRoom]['item'])
