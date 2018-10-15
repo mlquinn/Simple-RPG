@@ -47,7 +47,7 @@ while True:
 		if move[1] in rooms[currentRoom]:
 			currentRoom = rooms[currentRoom][move[1]]
 		else:
-			print("You can\'t go that way!")
+			print("You can't go that way!")
 
 	if move[0] == 'get': #if the move command begins with 'get'
 		if 'item' in rooms[currentRoom] and move[1] in rooms[currentRoom]['item']: #if the room contains an item and if its the item specified
@@ -61,4 +61,8 @@ while True:
 		inventory.remove('key')
 	if currentRoom == 'garden':
 		print("You escaped the mansion... YOU WIN!")
+		break
+	if 'monster' in rooms[currentRoom]:
+		print("Ah! there's a " + rooms[currentRoom]['monster'] + "!")
+		print("GAME OVER!")
 		break
