@@ -5,7 +5,8 @@ rooms = {
 		"item" : "knife"
 	},
 	"dining room" : {
-		"east" : "kitchen"
+		"east" : "kitchen",
+		"monster" : "Glob Monster"
 	},
 	"hall" : {
 		"north" : "kitchen",
@@ -22,8 +23,7 @@ rooms = {
 		'item' : 'candlestick'
 	},
 	"foyer" : {
-		"west" : "hall",
-		"east" : "garden"
+		"west" : "hall"
 	},
 	"garden" : {
 		'west' : 'foyer'

@@ -59,6 +59,7 @@ while True:
 	if currentRoom == 'foyer' and 'key' in inventory:
 		print("You unlucked the door...")
 		inventory.remove('key')
+		rooms['foyer'].update({'east' : 'garden'})
 	if currentRoom == 'garden':
 		print("You escaped the mansion... YOU WIN!")
 		break
