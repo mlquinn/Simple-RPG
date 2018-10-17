@@ -16,33 +16,47 @@ rooms = {
 		"north" : "hall"
 	},
 	"family room" : {
-		"east" : "hall"
+		"east" : "hall",
+		'up' : 'second floor bedroom'
 	},
 	"foyer" : {
 		"west" : "hall"
 	},
 	"garden" : {
 		'west' : 'foyer'
-		}
+	},
+	'second floor bedroom' : {
+		'down' : 'family room',
+		'east' : 'second floor patio'
+	},
+	'second floor patio' : {
+		'west' : 'second floor bedroom'
+	}
 }
 items = {
 	"kitchen" : {
 		"item" : "knife"
 	},
 	"dining room" : {
-		'item' : 'key'
 	},
 	"hall" : {
 	},
 	"bathroom" : {
-	},
-	"family room" : {
 		'monster' : 'Glob Monster'
 	},
-	"foyer" : {
+	"family room" : {
 		
+	},
+	"foyer" : {
+		'item' : 'candlestick'
 	},
 	"garden" : {
 		
-		}
+	},
+	'second floor bedroom' : {
+		'item' : 'key'
+	},
+	'second floor patio' : {
+		'monster' : 'Bird Man'
+	}
 }

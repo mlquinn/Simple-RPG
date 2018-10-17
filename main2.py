@@ -27,7 +27,7 @@ Commands:
 def showStatus():
 	print("-------STATUS-------" +
 		"\nCurrent room: " + currentRoom +
-		"\nAvailable commands: " + str(list(rooms[currentRoom].keys())) +
+		"\nAvailable directions: " + str(list(rooms[currentRoom].keys())) +
 		"\nInventory: " + str(inventory))
 	if 'item' in items[currentRoom] :
 		print("You see a " + items[currentRoom]['item'])
@@ -40,33 +40,36 @@ print("Welcome to Simple RPG!")
 showInstructions()
 
 while True:
-	showStatus() 
-	move = ''
-	while move == '':
-		move = input(">")
-	move = move.lower().split() #split the move command into a list
-		
-	if move[0] == 'go': #if the move command begins with 'go'
-		if move[1] in rooms[currentRoom]:
-			currentRoom = rooms[currentRoom][move[1]]
-		else:
-			print("You can't go that way!")
+	try:
+		showStatus() 
+		move = ''
+		while move == '':
+			move = input(">")
+		move = move.lower().split() #split the move command into a list
+			
+		if move[0] == 'go': #if the move command begins with 'go'
+			if move[1] in rooms[currentRoom]:
+				currentRoom = rooms[currentRoom][move[1]]
+			else:
+				print("You can't go that way!")
 
-	if move[0] == 'get': #if the move command begins with 'get'
-		if 'item' in items[currentRoom] and move[1] in items[currentRoom]['item']: #if the room contains an item and if its the item specified
-			inventory += [move[1]] #add the item to the inventory
-			del items[currentRoom]['item']
-			print("got " + move[1])
-		else : 
-			print("can\'t get " + move[1])
-	if currentRoom == 'foyer' and 'key' in inventory:
-		print("You unlucked the door...")
-		inventory.remove('key')
-		rooms['foyer'].update({'east' : 'garden'})
-	if currentRoom == 'garden':
-		print("You escaped the mansion... YOU WIN!")
-		break
-	if 'monster' in items[currentRoom]:
-		print("Ah! there's a " + items[currentRoom]['monster'] + "!")
-		print("GAME OVER!")
-		break
+		if move[0] == 'get': #if the move command begins with 'get'
+			if 'item' in items[currentRoom] and move[1] in items[currentRoom]['item']: #if the room contains an item and if its the item specified
+				inventory += [move[1]] #add the item to the inventory
+				del items[currentRoom]['item']
+				print("got " + move[1])
+			else : 
+				print("can\'t get " + move[1])
+		if currentRoom == 'foyer' and 'key' in inventory:
+			print("You unlucked the door...")
+			inventory.remove('key')
+			rooms['foyer'].update({'east' : 'garden'})
+		if currentRoom == 'garden':
+			print("You escaped the mansion... YOU WIN!")
+			break
+		if 'monster' in items[currentRoom]:
+			print("Ah! there's a " + items[currentRoom]['monster'] + "!")
+			print("GAME OVER!")
+			break
+	except:
+		print("Game breaking crash, please send reports to Quinnovations.Feedback@gmail.com!")
