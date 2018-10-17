@@ -3,11 +3,14 @@
 	Simple RPG is a text based RPG game where the player
 	can move between rooms, pick up items, fight monsters 
 	for the ultimate goal of escaping the mansion.
+	
+	This version adds in a second dictionary for the holding
+	item and monster information for better print statements.
 @author Michael Quinn
-@version 0.2
+@version 0.3
 @date October 14, 2018
 """
-from rooms import rooms
+from rooms import *
 import sys
 
 def showInstructions() :
@@ -24,10 +27,10 @@ Commands:
 def showStatus():
 	print("-------STATUS-------" +
 		"\nCurrent room: " + currentRoom +
-		"\nAvailable directions: " + str(list(rooms[currentRoom].keys())) +
+		"\nAvailable commands: " + str(list(rooms[currentRoom].keys())) +
 		"\nInventory: " + str(inventory))
-	if 'item' in rooms[currentRoom] :
-		print("You see a " + rooms[currentRoom]['item'])
+	if 'item' in items[currentRoom] :
+		print("You see a " + items[currentRoom]['item'])
 	print("--------------------")
 
 inventory = [] #initialize an empty inventory
@@ -50,9 +53,9 @@ while True:
 			print("You can't go that way!")
 
 	if move[0] == 'get': #if the move command begins with 'get'
-		if 'item' in rooms[currentRoom] and move[1] in rooms[currentRoom]['item']: #if the room contains an item and if its the item specified
+		if 'item' in items[currentRoom] and move[1] in items[currentRoom]['item']: #if the room contains an item and if its the item specified
 			inventory += [move[1]] #add the item to the inventory
-			del rooms[currentRoom]['item']
+			del items[currentRoom]['item']
 			print("got " + move[1])
 		else : 
 			print("can\'t get " + move[1])
@@ -63,7 +66,7 @@ while True:
 	if currentRoom == 'garden':
 		print("You escaped the mansion... YOU WIN!")
 		break
-	if 'monster' in rooms[currentRoom]:
-		print("Ah! there's a " + rooms[currentRoom]['monster'] + "!")
+	if 'monster' in items[currentRoom]:
+		print("Ah! there's a " + items[currentRoom]['monster'] + "!")
 		print("GAME OVER!")
 		break
