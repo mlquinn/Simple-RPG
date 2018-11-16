@@ -51,12 +51,16 @@ while True:
 			print("Thanks for playing!")
 			break
 		if move[0] == 'go': #if the move command begins with 'go'
+			assert len(move) == 2 , "'go' command requires 2 entries!"
+			
 			if move[1] in rooms[currentRoom]:
 				currentRoom = rooms[currentRoom][move[1]]
 			else:
 				print("You can't go that way!")
+			
 
 		if move[0] == 'get': #if the move command begins with 'get'
+			assert len(move) == 2 , "'get' command requires 2 entries!"
 			if 'item' in items[currentRoom] and move[1] in items[currentRoom]['item']: #if the room contains an item and if its the item specified
 				inventory += [move[1]] #add the item to the inventory
 				del items[currentRoom]['item']
@@ -74,7 +78,8 @@ while True:
 			print("Ah! there's a " + items[currentRoom]['monster'] + "!")
 			print("GAME OVER!")
 			break
+	except AssertionError:
+		print("Oh no! \nSomething went wrong!")
+		raise
 	except:
 		print("Game breaking crash, please send reports to Quinnovations.Feedback@gmail.com!")
-	finally:
-		print("Exiting...")
