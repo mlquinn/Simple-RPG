@@ -4,14 +4,14 @@
 	can move between rooms, pick up items, fight monsters 
 	for the ultimate goal of escaping the mansion.
 	
-	This version adds in a second dictionary for the holding
-	item and monster information for better print statements.
 @author Michael Quinn
 @version 0.3
 @date October 14, 2018
 """
 from rooms import *
 import sys
+import traceback
+
 
 def showInstructions() :
 	print("""================
@@ -78,8 +78,6 @@ while True:
 			print("Ah! there's a " + items[currentRoom]['monster'] + "!")
 			print("GAME OVER!")
 			break
-	except AssertionError:
+	except AssertionError as e:
 		print("Oh no! \nSomething went wrong!")
-		raise
-	except:
-		print("Game breaking crash, please send reports to Quinnovations.Feedback@gmail.com!")
+		traceback.print_exc()
