@@ -18,10 +18,10 @@ def showInstructions() :
 The objective of the game is simple: Escape the mansion.
 You can move from room to room collecting items to help you in
 this task, but watch out for the monster!
-
 Commands:
 \'go\' [direction]
 \'get' [item]
+\'quit'
 ================""")
 
 def showStatus():
@@ -47,6 +47,9 @@ while True:
 			move = input(">")
 		move = move.lower().split() #split the move command into a list
 			
+		if move[0] == 'quit':
+			print("Thanks for playing!")
+			break
 		if move[0] == 'go': #if the move command begins with 'go'
 			if move[1] in rooms[currentRoom]:
 				currentRoom = rooms[currentRoom][move[1]]
@@ -73,3 +76,5 @@ while True:
 			break
 	except:
 		print("Game breaking crash, please send reports to Quinnovations.Feedback@gmail.com!")
+	finally:
+		print("Exiting...")
